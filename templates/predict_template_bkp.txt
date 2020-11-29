@@ -1,0 +1,35 @@
+#import statements
+from keras.models import load_model
+from keras.preprocessing import image
+import numpy as np
+
+import sys
+
+first_arg = sys.argv[1]
+second_arg = sys.argv[2]
+
+#Predict Function
+def xpredict(model_path, image_path):
+    #Importing model
+    model = load_model(model_path)
+    #Shape of the model
+    image_shape = {{inference_data.input_shape}}
+    #Loading Image
+    {% if inference_data.color_image -%}
+    img = image.load_img(image_path, target_size=image_shape)
+    #Data Preprocessing Steps
+    img = image.img_to_array(img)
+    {%- else -%}
+    import cv2
+    img = cv2.imread(image_path)
+    img = cv2.resize(img, image_shape[0:2])
+    {%- endif %}
+    {%- if inference_data.data_augumentation %}
+    img = img/255.0
+    {% endif -%}
+    img = np.expand_dims(img, axis=0)
+    preds = model.predict(img)
+    return preds
+
+xpredict(first_arg, second_arg)
+

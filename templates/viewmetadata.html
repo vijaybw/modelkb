@@ -1,0 +1,69 @@
+<html>
+<head>
+        <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+
+    <style>
+textforkpi {
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+}
+</style>
+</head>
+    <body>
+        <div class="container" style="width:100%">
+            <table style="width:100%">
+                  <tr>
+                    <td align="center" ><iframe src="./get_chart?legend=Accuracy&datapassed={{values['list_of_accuracy_over_epochs']}}&labels={{values['list_of_epochs']}}" frameborder="0"  height="350"  width="400"></iframe></td>
+                    <td align="center" ><iframe src="./get_chart?legend=Loss&datapassed={{values['list_of_loss_over_epochs']}}&labels={{values['list_of_epochs']}}" frameborder="0"  height="350"  width="400"></iframe></td>
+                  </tr>
+                  <tr>
+                    <td><ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Framework
+                            <span class="badge badge-primary badge-pill">{{ values['Framework'] }}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                           Epochs
+                            <span class="badge badge-primary badge-pill">{{ values['Epochs'] }}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Batch Size
+                            <span class="badge badge-primary badge-pill">{{ values['BatchSize'] }}</span>
+                          </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Layers
+                            <span class="badge badge-primary badge-pill">{{ values['Layers'] }}</span>
+                          </li>
+                        </ul></td><td><ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Input Tensors
+                            <span class="badge badge-primary badge-pill">{{ values['InputTensors'] }}</span>
+                          </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Optimizer
+                            <span class="badge badge-primary badge-pill">{{ values['Optimizer'] }}</span>
+                          </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Output Tensor
+                            <span class="badge badge-primary badge-pill">{{ values['OutputTensor'] }}</span>
+                          </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                           Loss Function
+                            <span class="badge badge-primary badge-pill">{{ values['LossFunction'] }}</span>
+                          </li>
+                        </ul></td>
+                  </tr>
+            </table>
+        </div>
+   </body>
+</html>
